@@ -1,33 +1,28 @@
 package main
 
 import (
-	"dataStruct/treezk"
+	"dataStruct/stackzk"
 	"fmt"
+	"net/http"
+
+	"github.com/julienschmidt/httprouter"
 )
 
 func main() {
-	tree := treezk.Tree{}
-	tree.Add(0)
-	tree.Add(1)
-	tree.Add(2)
-	tree.Add(3)
-	tree.Add(4)
-	tree.Add(5)
-	tree.Add(6)
-	tree.Add(7)
-	tree.Add(8)
-	tree.Add(9)
+	stackzk.Push(1)
+	stackzk.Push(2)
+	stackzk.Push(3)
+	stackzk.Push(4)
+	stackzk.Push(5)
+	stackzk.Push(6)
+	println(len(stackzk.Data))
+}
 
-	//广度优先遍历
-	tree.BreadthTravel()
+type Test struct{}
 
-	//深度优先 先序遍历
-	tree.PreOrder(tree.RootNode)
-
-	//深度优先  中序遍历
-	tree.InOrder(tree.RootNode)
-
-	//深度优先  后序遍历
-	tree.PostOrder(tree.RootNode)
-	fmt.Println("数据结构！")
+func (test *Test) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, "")
+}
+func hello(w http.ResponseWriter, r *http.Request, param httprouter.Params) {
+	fmt.Fprintln(w, "%s", param.ByName("name"))
 }
