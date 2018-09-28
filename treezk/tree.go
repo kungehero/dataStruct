@@ -76,31 +76,31 @@ func (this *Tree) BreadthTravel() {
 }
 
 //先序
-func (this *Tree) PreOrder(node *Node) {
+func (this *Tree) PreOrder1(node *Node) {
 	if node == nil {
 		return
 	}
 	println(&node.Data)
-	this.PreOrder(node.LNode)
-	this.PreOrder(node.RNode)
+	this.PreOrder1(node.LNode)
+	this.PostOrder1(node.RNode)
 }
 
 //中序
-func (this *Tree) InOrder(node *Node) {
+func (this *Tree) InOrder1(node *Node) {
 	if node == nil {
 		return
 	}
-	this.PreOrder(node.LNode)
+	this.PreOrder1(node.LNode)
 	println(&node.Data)
-	this.PreOrder(node.RNode)
+	this.PostOrder1(node.RNode)
 }
 
 //后序
-func (this *Tree) PostOrder(node *Node) {
+func (this *Tree) PostOrder1(node *Node) {
 	if node == nil {
 		return
 	}
-	this.PreOrder(node.LNode)
-	this.PreOrder(node.RNode)
+	this.PreOrder1(node.LNode)
+	this.PostOrder1(node.RNode)
 	println(&node.Data)
 }
