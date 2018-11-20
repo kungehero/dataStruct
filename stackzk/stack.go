@@ -6,7 +6,10 @@ import (
 
 var Data []interface{}
 
-func Push(x interface{}) error {
+type Stack struct {
+}
+
+func (s *Stack) Push(x interface{}) error {
 	Data = make([]interface{}, 0, 100000)
 	length, capacity := len(Data), cap(Data)
 	if length == capacity {
@@ -18,7 +21,7 @@ func Push(x interface{}) error {
 	return nil
 }
 
-func Pop() (x interface{}, err error) {
+func (s *Stack) Pop() (x interface{}, err error) {
 	Data = make([]interface{}, 0, 100000)
 	lengtn := len(Data)
 	if lengtn == 0 {

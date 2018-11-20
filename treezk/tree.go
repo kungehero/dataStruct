@@ -1,6 +1,9 @@
 package treezk
 
-import "fmt"
+import (
+	"container/list"
+	"fmt"
+)
 
 type Object interface{}
 
@@ -19,6 +22,30 @@ type Node struct {
 
 type Tree struct {
 	RootNode *Node
+	Tail     *Node
+}
+
+func GetHeightTree(node *Node) {
+	list := list.New()
+	list.PushBack(node)
+	var h int
+	for list.Len() > 0 {
+		NodeCount := list.Len()
+		fmt.Println(NodeCount)
+		h++
+		for NodeCount > 0 {
+			noderemove := list.Back()
+			nodef := noderemove.Value.(*Node)
+			list.Remove(noderemove)
+			if nodef.LNode != nil {
+				list.PushBack(nodef.LNode)
+			}
+			if nodef.RNode != nil {
+				list.PushBack(nodef.RNode)
+			}
+			NodeCount--
+		}
+	}
 }
 
 //广度优先，按层级遍历添加
